@@ -1,0 +1,104 @@
+[gd_scene load_steps=6 format=3 uid="uid://dp6w1afc6ehhq"]
+
+[ext_resource type="Texture2D" uid="uid://bdp3hvkwvo23y" path="res://assets/brand/studio-logo.png" id="1_1c8rf"]
+[ext_resource type="Script" path="res://scene/startup.gd" id="1_5yty4"]
+
+[sub_resource type="Animation" id="Animation_5sbyf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CenterContainer/Studio-logo:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_2s8n6"]
+resource_name = "fade-in"
+length = 8.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CenterContainer/Studio-logo:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1.9, 3.2, 4.7, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(8),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"change_to_main_menu"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xwwu5"]
+_data = {
+"RESET": SubResource("Animation_5sbyf"),
+"fade-in": SubResource("Animation_2s8n6")
+}
+
+[node name="startup" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5yty4")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1950.0
+offset_top = -1710.0
+offset_right = -3505.0
+offset_bottom = -2376.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(179.078, 97.1891)
+color = Color(0.04, 0.04, 0.04, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_xwwu5")
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -703.0
+offset_top = -461.0
+offset_right = 703.0
+offset_bottom = 462.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Studio-logo" type="TextureRect" parent="CenterContainer"]
+layout_mode = 2
+texture = ExtResource("1_1c8rf")
+stretch_mode = 2
+metadata/_edit_use_anchors_ = true

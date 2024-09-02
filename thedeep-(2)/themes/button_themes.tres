@@ -1,0 +1,10 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://0txd5bb3i1uo"]
+
+[ext_resource type="FontFile" uid="uid://bkbrnhhowut5m" path="res://themes/KatahdinRound.otf" id="1_4405i"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m57tq"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[resource]
+Button/fonts/font = ExtResource("1_4405i")
+Button/styles/normal = SubResource("StyleBoxFlat_m57tq")

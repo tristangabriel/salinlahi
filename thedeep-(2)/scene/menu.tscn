@@ -1,0 +1,110 @@
+[gd_scene load_steps=7 format=3 uid="uid://csg6pxiqbesct"]
+
+[ext_resource type="Script" path="res://scene/menu.gd" id="1_2tsho"]
+[ext_resource type="Texture2D" uid="uid://k2sw5w17s1hq" path="res://assets/submarine parts/game-logo.png" id="1_lswfd"]
+[ext_resource type="Theme" uid="uid://0txd5bb3i1uo" path="res://themes/button_themes.tres" id="2_v3qux"]
+[ext_resource type="FontFile" uid="uid://bkbrnhhowut5m" path="res://themes/KatahdinRound.otf" id="3_fiiv2"]
+
+[sub_resource type="Animation" id="Animation_puj8i"]
+resource_name = "bobbing"
+length = 3.0
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yvn1w"]
+_data = {
+"bobbing": SubResource("Animation_puj8i")
+}
+
+[node name="main-menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_2tsho")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -276.5
+offset_top = -266.0
+offset_right = 276.5
+offset_bottom = 266.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LogoContainer" type="CenterContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/LogoContainer"]
+layout_mode = 2
+texture = ExtResource("1_lswfd")
+
+[node name="ButtonsContainer" type="CenterContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_yvn1w")
+}
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -95.0
+offset_top = -39.0
+offset_right = 95.0
+offset_bottom = 165.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="New Game" type="Button" parent="VBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("2_v3qux")
+theme_override_fonts/font = ExtResource("3_fiiv2")
+theme_override_font_sizes/font_size = 32
+text = "NEW GAME"
+
+[node name="Continue" type="Button" parent="VBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("2_v3qux")
+theme_override_font_sizes/font_size = 32
+text = "CONTINUE"
+
+[node name="AquaDex" type="Button" parent="VBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("2_v3qux")
+theme_override_font_sizes/font_size = 32
+text = "AQUADEX"
+
+[node name="Quit" type="Button" parent="VBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("2_v3qux")
+theme_override_font_sizes/font_size = 32
+text = "QUIT"
+
+[connection signal="pressed" from="VBoxContainer2/New Game" to="." method="_on_new_game_pressed"]

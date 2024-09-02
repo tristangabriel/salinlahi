@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://bsu2b53aiin4q"]
+
+[ext_resource type="PackedScene" uid="uid://d3hwqm13lc86k" path="res://scene/submarine.tscn" id="1_jj6tc"]
+[ext_resource type="PackedScene" uid="uid://dydr4j6yhat48" path="res://scene/touch_controls/joystick.tscn" id="2_u7jpg"]
+
+[node name="Map" type="Node2D"]
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("1_jj6tc")]
+position = Vector2(360.959, 213.963)
+
+[node name="joystick" parent="." instance=ExtResource("2_u7jpg")]
+position = Vector2(162.034, 485.034)

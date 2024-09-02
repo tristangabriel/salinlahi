@@ -1,0 +1,177 @@
+[gd_scene load_steps=17 format=3 uid="uid://d3hwqm13lc86k"]
+
+[ext_resource type="Script" path="res://scripts/submarine.gd" id="1_4l5cr"]
+[ext_resource type="Texture2D" uid="uid://jfgi37i0ydry" path="res://assets/submarine parts/bubbles.png" id="2_r3l0u"]
+[ext_resource type="Texture2D" uid="uid://b7hgc5xiwjp11" path="res://assets/submarine parts/blades_002.png" id="3_kfgj2"]
+[ext_resource type="Texture2D" uid="uid://vutuw3hyhra3" path="res://assets/submarine parts/engine_002.png" id="4_r8o7h"]
+[ext_resource type="Texture2D" uid="uid://byxd1k3jfh5q3" path="res://assets/submarine parts/periscope_002.png" id="5_dxnwu"]
+[ext_resource type="Texture2D" uid="uid://b604bi8l580mn" path="res://assets/submarine parts/tube_thing_back_002.png" id="6_c01rr"]
+[ext_resource type="Texture2D" uid="uid://bg74eeerbiexy" path="res://assets/submarine parts/body_002.png" id="7_13voc"]
+[ext_resource type="Texture2D" uid="uid://c1tv27sixx102" path="res://assets/submarine parts/viewport_002.png" id="8_is8l0"]
+[ext_resource type="Texture2D" uid="uid://cq3xk5gwh24ya" path="res://assets/submarine parts/tube_thing_front_002.png" id="9_agevh"]
+
+[sub_resource type="Gradient" id="Gradient_kx7qa"]
+colors = PackedColorArray(0.301961, 0.607843, 0.901961, 0.0784314, 0.470588, 0.752941, 0.964706, 0.0196078)
+
+[sub_resource type="Gradient" id="Gradient_1f5k8"]
+colors = PackedColorArray(0.866111, 0.866111, 0.866111, 1, 1, 1, 1, 1)
+
+[sub_resource type="Animation" id="Animation_oxr1s"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("submarine_sprites/propeller/blades:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 0.5)]
+}
+
+[sub_resource type="Animation" id="Animation_un41r"]
+resource_name = "idle"
+step = 0.01
+
+[sub_resource type="Animation" id="Animation_8o1yb"]
+resource_name = "move-forward"
+length = 0.48
+loop_mode = 1
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("submarine_sprites/propeller/blades:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.08, 0.16, 0.24, 0.32, 0.4, 0.48),
+"transitions": PackedFloat32Array(1, 1.51572, 1, 1.51572, 1, 1.51572, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 0.1), Vector2(1, 1), Vector2(1, 0.1), Vector2(1, 1), Vector2(1, 0.1), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("submarine_sprites/propeller:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.08, 0.16, 0.24, 0.32, 0.4, 0.48),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 2), Vector2(0, 0), Vector2(0, 2), Vector2(0, 0), Vector2(0, 2), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("submarine_sprites/body:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.08, 0.16, 0.24, 0.32, 0.4, 0.48),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -1), Vector2(0, 0), Vector2(0, 1), Vector2(0, 0), Vector2(0, -1), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_10qko"]
+_data = {
+"RESET": SubResource("Animation_oxr1s"),
+"idle": SubResource("Animation_un41r"),
+"move-forward": SubResource("Animation_8o1yb")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fgqdv"]
+radius = 109.324
+height = 344.027
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+scale = Vector2(0.4, 0.4)
+script = ExtResource("1_4l5cr")
+speed = 300
+friction = 100
+acceleration = 2500
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(-135.544, -83.3695)
+amount = 30
+lifetime = 3.0
+speed_scale = 0.7
+explosiveness = 0.04
+randomness = 0.92
+lifetime_randomness = 1.0
+texture = ExtResource("2_r3l0u")
+emission_shape = 1
+emission_sphere_radius = 20.0
+direction = Vector2(100, 1)
+spread = 52.12
+gravity = Vector2(0, -50)
+damping_min = 0.1
+damping_max = 0.1
+scale_amount_min = 0.4
+scale_amount_max = 0.7
+color_ramp = SubResource("Gradient_kx7qa")
+color_initial_ramp = SubResource("Gradient_1f5k8")
+
+[node name="submarine_sprites" type="Sprite2D" parent="."]
+rotation = -6.28319
+metadata/_edit_lock_ = true
+
+[node name="propeller" type="Sprite2D" parent="submarine_sprites"]
+position = Vector2(0, 0.393695)
+metadata/_edit_lock_ = true
+
+[node name="blades" type="Sprite2D" parent="submarine_sprites/propeller"]
+position = Vector2(-128.872, -91.4922)
+scale = Vector2(1, 0.5)
+texture = ExtResource("3_kfgj2")
+metadata/_edit_lock_ = true
+
+[node name="engine" type="Sprite2D" parent="submarine_sprites/propeller"]
+position = Vector2(-85.9821, -89.8742)
+texture = ExtResource("4_r8o7h")
+metadata/_edit_lock_ = true
+
+[node name="body" type="Sprite2D" parent="submarine_sprites"]
+position = Vector2(0, 0.196847)
+metadata/_edit_lock_ = true
+
+[node name="periscope" type="Sprite2D" parent="submarine_sprites/body"]
+position = Vector2(32.6534, -216.517)
+texture = ExtResource("5_dxnwu")
+metadata/_edit_lock_ = true
+
+[node name="tube-thing-back" type="Sprite2D" parent="submarine_sprites/body"]
+position = Vector2(47.2224, -13.8775)
+texture = ExtResource("6_c01rr")
+metadata/_edit_lock_ = true
+
+[node name="body-proper" type="Sprite2D" parent="submarine_sprites/body"]
+position = Vector2(42.6068, -94.7367)
+texture = ExtResource("7_13voc")
+metadata/_edit_lock_ = true
+
+[node name="viewport" type="Sprite2D" parent="submarine_sprites/body"]
+position = Vector2(117.5, -84.4874)
+texture = ExtResource("8_is8l0")
+metadata/_edit_lock_ = true
+
+[node name="tube-thing-front" type="Sprite2D" parent="submarine_sprites/body"]
+position = Vector2(5.00003, -4.99998)
+texture = ExtResource("9_agevh")
+metadata/_edit_lock_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_10qko")
+}
+autoplay = "move-forward"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1.28613e-11, -83.3695)
+rotation = 1.5708
+scale = Vector2(1, 0.996799)
+shape = SubResource("CapsuleShape2D_fgqdv")

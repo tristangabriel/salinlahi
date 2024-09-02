@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://dydr4j6yhat48"]
+
+[ext_resource type="Script" path="res://scripts/joystick.gd" id="1_41hh1"]
+[ext_resource type="Texture2D" uid="uid://bdtnu8jxsma8b" path="res://assets/submarine parts/joystick_border.png" id="1_fvkho"]
+[ext_resource type="Texture2D" uid="uid://ccxvgjd4qgm0t" path="res://assets/submarine parts/joystick_main.png" id="2_bl7or"]
+[ext_resource type="Script" path="res://scripts/joystick_b.gd" id="4_md5fp"]
+
+[node name="joystick" type="Node2D"]
+script = ExtResource("1_41hh1")
+
+[node name="joystick_a" type="Sprite2D" parent="."]
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("1_fvkho")
+
+[node name="joystick_b" type="Sprite2D" parent="."]
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_bl7or")
+script = ExtResource("4_md5fp")
+
+[node name="Button" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -138.0
+offset_top = -138.0
+offset_right = 138.0
+offset_bottom = 138.0
+
+[connection signal="button_down" from="Button" to="joystick_b" method="_on_button_button_down"]
+[connection signal="button_up" from="Button" to="joystick_b" method="_on_button_button_up"]
