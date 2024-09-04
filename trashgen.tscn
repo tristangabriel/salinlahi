@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dfq7ne20tv5wo"]
+
+[ext_resource type="Script" path="res://trashgen.gd" id="1_ka0g6"]
+
+[node name="trashgen" type="Node2D"]
+script = ExtResource("1_ka0g6")

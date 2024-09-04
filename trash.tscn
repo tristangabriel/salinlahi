@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://bajxst34ml1e2"]
+
+[ext_resource type="Script" path="res://scene/path_follow_2d.gd" id="1_1k4li"]
+[ext_resource type="Texture2D" uid="uid://dr6kl63a5w3c" path="res://finQuestIcon.svg" id="2_e1lgk"]
+
+[sub_resource type="Curve2D" id="Curve2D_l1q0b"]
+_data = {
+"points": PackedVector2Array(-16.9514, -13.773, 16.9514, 13.773, 1.38354, 0.595764, 6.35678, -20.1298, -6.35678, 20.1298, 18.3349, 55.6878, 21.1893, -40.2596, -21.1893, 40.2596, 33.1674, 187.061, 24.3676, 6.35678, -24.3676, -6.35678, -22.9841, 235.797, -14.8325, 44.4974, 14.8325, -44.4974, -40.995, 204.013, 10.5946, 55.0921, -10.5946, -55.0921, -13.4489, 115.018, 0, 0, 0, 0, 1.38354, 0.595764)
+}
+point_count = 7
+
+[node name="trash" type="Node2D"]
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_l1q0b")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(-8.32706, 30.3177)
+rotation = -1.79766
+progress = 516.017
+rotates = false
+script = ExtResource("1_1k4li")
+
+[node name="Sprite2D" type="Sprite2D" parent="Path2D/PathFollow2D"]
+position = Vector2(16.2833, 5.1435)
+rotation = 1.85531
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_e1lgk")
